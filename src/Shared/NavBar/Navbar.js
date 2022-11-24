@@ -21,7 +21,7 @@ const Navbar = () => {
                                 <li><a>Submenu 2</a></li>
                             </ul>
                         </li>
-                        <li><a>Item 3</a></li>
+                        <li><Link to='/blog'>Blog</Link></li>
                         <Link className="btn mr-16 bg-primary text-white border-0">Login</Link>
                     </ul>
 
@@ -45,7 +45,7 @@ const Navbar = () => {
                             <li><a>Submenu 2</a></li>
                         </ul>
                     </li>
-                    <li><a>Item 3</a></li>
+                    <li><Link to='/blog'>Blog</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
