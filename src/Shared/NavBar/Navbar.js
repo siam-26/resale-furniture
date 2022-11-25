@@ -22,7 +22,9 @@ const Navbar = () => {
                             </ul>
                         </li>
                         <li><Link to='/blog'>Blog</Link></li>
-                        <Link className="btn mr-16 bg-primary text-white border-0">Login</Link>
+                        <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
+
+                        <Link className="btn mr-16 bg-primary text-white border-0">Register</Link>
                     </ul>
 
                     {/* <div className="navbar-end">
@@ -50,7 +52,9 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <div className='hidden lg:block'>
-                    <Link className="btn mr-16 bg-primary text-white border-0">Login</Link>
+                    <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
+
+                    <Link className="btn mr-16 bg-primary text-white border-0">Register</Link>
                 </div>
 
             </div>
