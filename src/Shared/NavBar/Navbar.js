@@ -24,12 +24,8 @@ const Navbar = () => {
                         <li><Link to='/blog'>Blog</Link></li>
                         <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
 
-                        <Link className="btn mr-16 bg-primary text-white border-0">Register</Link>
+                        <Link className="btn mr-16 bg-primary text-white border-0">Logout</Link>
                     </ul>
-
-                    {/* <div className="navbar-end">
-                        <Link className="btn mr-16 bg-primary text-white border-0">Login</Link>
-                    </div> */}
                 </div>
 
                 <Link className="btn btn-ghost normal-case text-xl ml-16" to='/'>HMAS-Furniture</Link>
@@ -54,7 +50,7 @@ const Navbar = () => {
                 <div className='hidden lg:block'>
                     <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
 
-                    <Link className="btn mr-16 bg-primary text-white border-0">Register</Link>
+                    <Link className="btn mr-16 bg-primary text-white border-0">Logout</Link>
                 </div>
 
             </div>

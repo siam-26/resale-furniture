@@ -1,7 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Category = ({ category }) => {
-    const { img, name } = category;
+
+    const { img, name, _id } = category;
+
+
     return (
         <div className=''>
             <div className="card">
@@ -9,33 +13,11 @@ const Category = ({ category }) => {
                 <div className="card-body">
                     <h2 className="card-title text-2xl m-auto font-bold">{name}</h2>
 
-                    <div className="card-actions justify-center mt-5">
-                        <button className="btn btn-primary">Buy Now</button>
+                    <div className="card-actions justify-center mt-5 relative bottom-44">
+                        <Link to={`/categories/${_id}`}><button className="btn btn-primary">See All</button></Link>
                     </div>
                 </div>
             </div>
-
-            {/* <div className="card shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="card shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 };
