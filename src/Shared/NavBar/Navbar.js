@@ -34,10 +34,12 @@ const Navbar = () => {
                                 <li><a>Submenu 2</a></li>
                             </ul>
                         </li>
-                        <li><Link to='/blog'>Blog</Link></li>
-                        <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
-
-                        <Link onClick={handleLogOut} className="btn mr-16 bg-primary text-white border-0">Logout</Link>
+                        {
+                            user?.email ?
+                                <Link onClick={handleLogOut} className="btn mr-16 bg-primary text-white border-0">Logout</Link>
+                                :
+                                <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
+                        }
                     </ul>
                 </div>
 

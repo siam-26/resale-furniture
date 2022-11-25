@@ -5,12 +5,13 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { Link } from 'react-router-dom';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../Hooks/useTitle';
 
 const notify = () => toast('Here is your toast.');
 
 
 const Register = () => {
-
+    useTitle('Register');
     //error log in
     const [error, setError] = useState('');
 

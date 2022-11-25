@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useTitle from '../../Hooks/useTitle';
 const Login = () => {
+    useTitle('Login');
     //error log in
     const [error, setError] = useState('');
 
