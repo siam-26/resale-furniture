@@ -23,7 +23,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 if (user) {
-                    alert('successu');
                     navigate('/');
                 }
 
