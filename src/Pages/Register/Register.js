@@ -2,21 +2,31 @@ import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast, { Toaster } from 'react-hot-toast';
 import useTitle from '../../Hooks/useTitle';
+import useToken from '../../Hooks/useToken/useToken';
 
 const notify = () => toast('Here is your toast.');
 
 
 const Register = () => {
     useTitle('Register');
+
+    const [registerToken, setRegisterToken] = useState('');
+    const [token] = useToken(registerToken);
     //error log in
     const [error, setError] = useState('');
 
     const { createUser, googleSignIn, userUpdate } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+
+    const navigate = useNavigate();
+
+    if (token) {
+        navigate('/');
+    }
 
     //google Provider
     const provider = new GoogleAuthProvider();
@@ -43,11 +53,32 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 updateUserProfileHandler(data.name);
+                userInfoDb(data.name, data.email);
+
 
             })
             .catch(error => {
                 const err = setError(error.message);
             })
+    }
+
+    //save new user information on database
+    const userInfoDb = (name, email) => {
+        const userNew = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(userNew),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setRegisterToken(email);
+                alert('succefull');
+            })
+            .catch(error => console.log(error));
     }
 
     //update user

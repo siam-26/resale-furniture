@@ -5,13 +5,23 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import useTitle from '../../Hooks/useTitle';
+import useToken from '../../Hooks/useToken/useToken';
 const Login = () => {
     useTitle('Login');
     //error log in
     const [error, setError] = useState('');
 
+    const [loginToken, setLoginToken] = useState('');
+    const [token] = useToken(loginToken);
 
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const { logIn, googleSignIn } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
@@ -19,10 +29,6 @@ const Login = () => {
     //google Provider
     const provider = new GoogleAuthProvider();
 
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const from = location.state?.from?.pathname || '/';
 
     //user login
 
@@ -31,7 +37,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setError('');
-                navigate(from, { replace: true });
+                setLoginToken(data.email);
+
 
 
             })
