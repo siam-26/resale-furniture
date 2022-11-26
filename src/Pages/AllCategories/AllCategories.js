@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
+import AllCategoriesModal from './AllCategoriesModal/AllCategoriesModal';
 
-const AllCategories = ({ category }) => {
+const AllCategories = () => {
     useTitle('AllCategories');
+    const [categoryModal, setCategoryModal] = useState(null);
+    const { loading } = useContext(AuthContext);
     const allcategories = useLoaderData();
+    console.log(allcategories);
+
+    if (loading) {
+        return <p>loading...</p>
+    }
 
     return (
         <div>
@@ -24,9 +33,17 @@ const AllCategories = ({ category }) => {
                             <p>Used: {product.yearsOfUse} years</p>
                             <p>Seller: {product.sellersName}</p>
                             <div className="card-actions justify-end">
-                                <button className="w-full btn btn-primary">Book Now</button>
+
+                                {/* open modal */}
+                                <label onClick={() => setCategoryModal(allcategories)} htmlFor="HMAS-Furniture-modal" className="btn btn-primary w-full">Book Now</label>
                             </div>
                         </div>
+
+                        {
+                            categoryModal &&
+                            <AllCategoriesModal categoryModal={categoryModal}></AllCategoriesModal>
+                        }
+
                     </div>)
                 }
 

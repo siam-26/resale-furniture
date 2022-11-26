@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -10,6 +10,9 @@ const Login = () => {
     //error log in
     const [error, setError] = useState('');
 
+
+
+
     const { logIn, googleSignIn } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
 
@@ -17,6 +20,9 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     //user login
 
@@ -24,9 +30,9 @@ const Login = () => {
         logIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                if (user) {
-                    navigate('/');
-                }
+                setError('');
+                navigate(from, { replace: true });
+
 
             })
             .catch(error => {

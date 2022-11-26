@@ -15,7 +15,7 @@ const Register = () => {
     //error log in
     const [error, setError] = useState('');
 
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, googleSignIn, userUpdate } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
 
     //google Provider
@@ -36,18 +36,32 @@ const Register = () => {
     //creater user account
     const handleCreateUser = data => {
 
-        createUser(data.email, data.password, data.form)
+        createUser(data.email, data.password)
 
             .then(result => {
 
                 const user = result.user;
                 console.log(user);
-                data.form.reset();
-
+                updateUserProfileHandler(data.name);
 
             })
             .catch(error => {
                 const err = setError(error.message);
+            })
+    }
+
+    //update user
+    const updateUserProfileHandler = (name) => {
+        const info = {
+            displayName: name,
+
+        }
+        userUpdate(info)
+            .then(() => {
+
+            })
+            .catch(error => {
+
             })
     }
     return (
@@ -63,13 +77,6 @@ const Register = () => {
                                 <span className="font-bold label-text">Name</span>
                             </label>
                             <input {...register("name")} type="text" placeholder="your name" className="input input-bordered" />
-                        </div>
-
-                        <div className="form-control mt-3 mb-5">
-                            <label className="label">
-                                <span className="font-bold label-text">Phone</span>
-                            </label>
-                            <input {...register("phone")} type="number" placeholder="phone" className="input input-bordered" />
                         </div>
 
                         <div className="form-control mt-3 mb-5">
