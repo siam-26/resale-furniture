@@ -41,7 +41,9 @@ const AllCategories = () => {
 
                         {
                             categoryModal &&
-                            <AllCategoriesModal categoryModal={categoryModal}></AllCategoriesModal>
+                            <AllCategoriesModal categoryModal={categoryModal}
+                                setCategoryModal={setCategoryModal}
+                            ></AllCategoriesModal>
                         }
 
                     </div>)
