@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Navbar = () => {
-    const { logOut, user } = useContext(AuthContext);
+    const { logOut, user, loading } = useContext(AuthContext);
 
+    if (loading) {
+        return <p>loading...</p>
+    }
     //logOut
     const handleLogOut = () => {
         logOut()
@@ -17,6 +20,7 @@ const Navbar = () => {
     }
     return (
         <div className="navbar bg-base-100 ">
+
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -35,12 +39,22 @@ const Navbar = () => {
                             </ul>
                         </li>
                         {
-                            user?.email ?
-                                <Link onClick={handleLogOut} className="btn mr-16 bg-primary text-white border-0">Logout</Link>
-                                :
-                                <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
+                            user?.email &&
+                            <li><Link to='/dashboard'>Dashboard</Link></li>
                         }
+                        {
+                            user?.email ?
+                                <Link onClick={handleLogOut} className="btn btn-outline btn-primary mr-16">Logout</Link>
+                                :
+                                <Link to='/login' className="btn btn-outline btn-primary mr-16">Login</Link>
+
+                        }
+                        <Link to='/RoleRegister' className="btn btn-outline btn-primary mr-16">Register</Link>
+
+
                     </ul>
+
+
                 </div>
 
                 <Link className="btn btn-ghost normal-case text-xl ml-16" to='/'>HMAS-Furniture</Link>
@@ -53,11 +67,16 @@ const Navbar = () => {
                             Parent
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                         </a>
-                        <ul className="p-2">
+                        <ul className="p-2 bg-primary">
                             <li><a>Submenu 1</a></li>
                             <li><a>Submenu 2</a></li>
                         </ul>
                     </li>
+                    {
+                        user?.email &&
+                        <li><Link to='/dashboard'>Dashboard</Link></li>
+                    }
+
                     <li><Link to='/blog'>Blog</Link></li>
                 </ul>
             </div>
@@ -65,14 +84,18 @@ const Navbar = () => {
                 <div className='hidden lg:block'>
                     {
                         user?.email ?
-                            <Link onClick={handleLogOut} className="btn mr-16 bg-primary text-white border-0">Logout</Link>
+                            <Link onClick={handleLogOut} className="btn btn-outline btn-primary mr-16">Logout</Link>
                             :
-                            <Link to='/login' className="btn mr-16 bg-primary text-white border-0">Login</Link>
+                            <Link to='/login' className="btn btn-outline btn-primary mr-16">Login</Link>
+
                     }
 
-
+                    <Link to='/RoleRegister' className="btn btn-outline btn-primary mr-16">Register</Link>
 
                 </div>
+                <label htmlFor="hmas-drawer" tabIndex={0} className="btn btn-ghost drawer-button lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
 
             </div>
         </div>

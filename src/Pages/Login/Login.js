@@ -19,9 +19,9 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
+    // if (token) {
+    //     navigate(from, { replace: true });
+    // }
 
     const { logIn, googleSignIn } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
@@ -38,7 +38,7 @@ const Login = () => {
                 const user = result.user;
                 setError('');
                 setLoginToken(data.email);
-
+                navigate(from, { replace: true });
 
 
             })
@@ -90,7 +90,7 @@ const Login = () => {
                             <p className='text-center text-secondary font-semibold'>or login with</p>
                             <FcGoogle onClick={handleGoogleLogin} className='text-4xl m-auto mt-2 cursor-pointer' />
                         </div>
-                        <p className="label-text-alt text-center mt-4">New in HMAS-Furniture? <Link className='link link-hover' to='/register'>register</Link></p>
+                        <p className="label-text-alt text-center mt-4">New in HMAS-Furniture? <Link className='link link-hover' to='/roleRegister'>register</Link></p>
                     </form>
                 </div>
             </div>

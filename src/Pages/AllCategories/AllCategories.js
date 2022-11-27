@@ -37,6 +37,7 @@ const AllCategories = () => {
                                 {/* open modal */}
                                 <label onClick={() => setCategoryModal(allcategories)} htmlFor="HMAS-Furniture-modal" className="btn btn-primary w-full">Book Now</label>
                             </div>
+
                         </div>
 
                         {

@@ -10,7 +10,7 @@ const AboutHmas = () => {
                 <div className="collapse-title text-xl collapse-arrow w-48 text-secondary font-bold">
                     Show More
                 </div>
-                <div className="collapse-content">
+                <div className="collapse-content text-secondary font-semibold">
                     <p>Every month, hundreds of millions of people use HMAS-Furniture to find and sell  more through classified ads. To sell new items or sell used items quickly, HMAS-Furniture offers Ad Promotion features.Every month, hundreds of millions of people use Bikroy to find and sell mobiles, musical instruments, cars, houses, jobs, and more through classified ads. To sell new items or sell used items quickly, Bikroy offers Ad Promotion features.
 
                         HMAS-Furniture has an extensive collection of new and used goods, making it easier for users to quickly buy new items or buy used items at their desired location. To buy online, users easily can reach their desired products through filtering options.

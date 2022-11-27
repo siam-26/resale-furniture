@@ -55,18 +55,18 @@ const AllCategoriesModal = ({ categoryModal, setCategoryModal }) => {
                         <div className="modal-box relative">
                             <label htmlFor="HMAS-Furniture-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                            <form onSubmit={handleUserBooking}>
-                                <input type="text" name='productName' value={product.name} placeholder="Item name" className="font-bold text-center input w-full max-w-xs border border-accent mb-5 " disabled />
+                            <form className='' onSubmit={handleUserBooking}>
+                                <input type="text" name='productName' value={product.name} placeholder="Item name" className="font-bold text-center input w-full max-w-xs border border-accent mb-5 ml-16" disabled />
 
-                                <input type="text" name='userName' value={user?.displayName} placeholder="Your name" className="input w-full max-w-xs border border-accent mb-5" disabled />
+                                <input type="text" name='userName' value={user?.displayName} placeholder="Your name" className="input w-full max-w-xs border border-accent mb-5 ml-16" disabled />
 
-                                <input type="email" name='email' value={user?.email} placeholder="email" className="input w-full max-w-xs border border-accent mb-5" disabled />
+                                <input type="email" name='email' value={user?.email} placeholder="email" className="input w-full max-w-xs border border-accent mb-5 ml-16" disabled />
 
-                                <input type="text" name='price' value={product.resalePrice} placeholder="price" className="input w-full max-w-xs border border-accent mb-5" />
+                                <input type="text" name='price' value={product.resalePrice} placeholder="price" className="input w-full max-w-xs border border-accent mb-5 ml-16" />
 
-                                <input type="number" name='phone' placeholder="phone" className="input w-full max-w-xs border border-accent mb-5" />
+                                <input type="tel" name='phone' placeholder="phone" className="input w-full max-w-xs border border-accent mb-5 ml-16" />
 
-                                <input type="text" name='location' placeholder="your location" className="input w-full max-w-xs border border-accent mb-5" />
+                                <input type="text" name='location' placeholder="your location" className="input w-full max-w-xs border border-accent mb-5 ml-16" />
 
                                 <input className='btn btn-primary w-full' type="submit" value="submit" />
                             </form>
