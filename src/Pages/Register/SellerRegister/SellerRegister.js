@@ -20,6 +20,10 @@ const SellerRegister = () => {
 
     const navigate = useNavigate();
 
+    if (token) {
+        navigate('/');
+    }
+
     //creater user account
     const handleCreateUser = data => {
 

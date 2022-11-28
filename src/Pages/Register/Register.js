@@ -53,7 +53,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 updateUserProfileHandler(data.name);
-                userInfoDb(data.name, data.email);
+                userInfoDb(data.name, data.role, data.email);
 
 
             })
@@ -63,8 +63,8 @@ const Register = () => {
     }
 
     //save new user information on database
-    const userInfoDb = (name, email) => {
-        const userNew = { name, email };
+    const userInfoDb = (name, role, email) => {
+        const userNew = { name, role, email };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -108,6 +108,13 @@ const Register = () => {
                                 <span className="font-bold label-text">Name</span>
                             </label>
                             <input {...register("name")} type="text" placeholder="your name" className="input input-bordered" />
+                        </div>
+
+                        <div className="form-control mt-3 mb-5">
+                            <label className="label">
+                                <span className="font-bold label-text">Role</span>
+                            </label>
+                            <input {...register("role")} type="text" placeholder="user" className="input input-bordered" />
                         </div>
 
                         <div className="form-control mt-3 mb-5">

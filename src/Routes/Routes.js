@@ -15,6 +15,8 @@ import Register from "../Pages/Register/Register";
 import SellerRegister from "../Pages/Register/SellerRegister/SellerRegister";
 import RoleRegister from "../Pages/RoleRegister/RoleRegister";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import UserPrivateRoute from "./PrivateRoute/UserPrivateRoute/UserPrivateRoute";
+import SellerPrivateRoute from "./SellerPrivateRoute/SellerPrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -59,19 +61,20 @@ const router = createBrowserRouter([
 
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/myOrders',
-                element: <MyOrders></MyOrders>
+                element: <UserPrivateRoute><MyOrders></MyOrders></UserPrivateRoute>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerPrivateRoute><AddProduct></AddProduct></SellerPrivateRoute>
+
             },
             {
                 path: '/dashboard/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerPrivateRoute><MyProducts></MyProducts></SellerPrivateRoute>
             },
 
             {
