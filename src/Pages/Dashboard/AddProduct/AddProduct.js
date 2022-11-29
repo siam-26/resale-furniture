@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
+
 
 const AddProduct = () => {
+    const { user } = useContext(AuthContext);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const imgHost = process.env.REACT_APP_imgbb_key;
@@ -12,8 +16,8 @@ const AddProduct = () => {
         const image = data.photo[0];
         const formData = new FormData();
         formData.append('image', image);
-
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHost}`;
+        //expiration=600
+        const url = `https://api.imgbb.com/1/upload?key=${imgHost}`;
         fetch(url, {
             method: 'POST',
             body: formData
@@ -45,8 +49,8 @@ const AddProduct = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            console.log(result);
                             if (result.acknowledged) {
+                                alert('successfully added');
                                 navigate('/dashboard/myProducts');
                             }
                         })
@@ -84,7 +88,7 @@ const AddProduct = () => {
                     <label className="label">
                         <span className="label-text text-black font-semibold">Seller Name</span>
                     </label>
-                    <input {...register("sellerName")} type="text" placeholder="Seller Name" className="input input-bordered w-72 md:w-1/2 lg:w-1/2 mb-5 " />
+                    <input {...register("sellerName")} value={user?.displayName} type="text" placeholder="Seller Name" className="input input-bordered w-72 md:w-1/2 lg:w-1/2 mb-5 " />
 
                     <label className="label">
                         <span className="label-text text-black font-semibold">Condition Type</span>
@@ -133,7 +137,7 @@ const AddProduct = () => {
                     <label className="label">
                         <span className="label-text text-black font-semibold">Posted Time</span>
                     </label>
-                    <input  {...register("postedTime")} type="text" placeholder="Posted Time" className="input w-72 md:w-1/2 lg:w-1/2 mb-5 input-bordered" />
+                    <input  {...register("postedTime")} type="datetime-local" placeholder="Posted Time" className="input w-72 md:w-1/2 lg:w-1/2 mb-5 input-bordered" />
                     <br /><br />
                     <button className="btn btn-primary w-72 md:w-72 lg:w-72 mb-8 ml-0 md:ml-12 lg:ml-12">Submit</button>
                 </div>
