@@ -29,7 +29,10 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <Link to='/'>Home</Link>
+                        <li>
 
+
+                        </li>
                         {
                             user?.email &&
                             <li><Link to='/dashboard'>Dashboard</Link></li>
@@ -59,7 +62,16 @@ const Navbar = () => {
                         user?.email &&
                         <li><Link to='/dashboard'>Dashboard</Link></li>
                     }
+                    <li>
 
+                        <div className="dropdown dropdown-hover">
+                            <label tabIndex={0} className=" m-1">Select User</label>
+                            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li className=''><Link to={'/register/user'}>Buyer</Link></li>
+                                <li><Link to={'/register/seller'}>Seller</Link></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><Link to='/blog'>Blog</Link></li>
                 </ul>
             </div>

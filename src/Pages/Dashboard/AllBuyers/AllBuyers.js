@@ -6,7 +6,7 @@ const AllBuyers = () => {
     const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ['allBuyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/admin/allBuyers');
+            const res = await fetch('https://furniture-server-gamma.vercel.app/dashboard/admin/allBuyers');
             const data = await res.json();
             return data;
         },
@@ -14,7 +14,7 @@ const AllBuyers = () => {
 
     //function for delete a buyer
     const handleDeleteBuyer = id => {
-        fetch(`http://localhost:5000/dashboard/admin/allBuyers/${id}`, {
+        fetch(`https://furniture-server-gamma.vercel.app/dashboard/admin/allBuyers/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -41,7 +41,8 @@ const AllBuyers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>email</th>
-                            <th>Favorite Color</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

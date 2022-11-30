@@ -30,7 +30,7 @@ const AllCategoriesModal = ({ categoryModal, setCategoryModal }) => {
             location
         }
 
-        fetch('http://localhost:5000/userBooking', {
+        fetch('https://furniture-server-gamma.vercel.app/userBooking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

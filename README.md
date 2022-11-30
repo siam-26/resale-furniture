@@ -69,3 +69,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # b612-used-products-resale-clients-side-siam-26
+
+# Project Name: HMAS-Furniture
+# Project Type: Recale Furniture Products
+# Project features & functionalities:
+• Authentication & Authorization a user when logged in or Registered.
+• Created three types of user's ; admin,seller & buyer.
+• Using Tailwind css,DaisyUI for design the website.
+• Created a booking system for Buyer.
+• Created a Blog route.
+
+# Live Link: https://hmas-furniture.web.app/

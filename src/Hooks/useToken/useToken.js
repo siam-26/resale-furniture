@@ -5,7 +5,7 @@ const useToken = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/jwt?email=${email}`)
+            fetch(`https://furniture-server-gamma.vercel.app/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('accessToken', data.accessToken);

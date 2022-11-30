@@ -37,7 +37,8 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 if (user) {
-                    toast.success('Successfully toasted!')
+                    toast.success('Successfully Login!');
+                    userInfoDb(user.displayName, user.email);
                 }
             })
             .catch(error => console.error(error));
@@ -65,7 +66,7 @@ const Register = () => {
     //save new user information on database
     const userInfoDb = (name, email) => {
         const userNew = { name, email };
-        fetch('http://localhost:5000/users', {
+        fetch('https://furniture-server-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -115,12 +116,6 @@ const Register = () => {
                             <input {...register("name")} type="text" placeholder="your name" className="input input-bordered" />
                         </div>
 
-                        {/* <div className="form-control mt-3 mb-5">
-                            <label className="label">
-                                <span className="font-bold label-text">Role</span>
-                            </label>
-                            <input {...register("role")} type="text" placeholder="user" className="input input-bordered" />
-                        </div> */}
 
                         <div className="form-control mt-3 mb-5">
                             <label className="label">

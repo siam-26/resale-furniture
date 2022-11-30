@@ -62,7 +62,7 @@ const SellerRegister = () => {
     //save new seller user information on database
     const userInfoDb = (name, role, email) => {
         const userNew = { name, role, email };
-        fetch('http://localhost:5000/users', {
+        fetch('https://furniture-server-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -98,8 +98,15 @@ const SellerRegister = () => {
                             <label className="label">
                                 <span className="font-bold label-text">Role</span>
                             </label>
-                            <input {...register("role", { required: true })} type="text" placeholder="seller" className="input input-bordered" />
+
+                            <select {...register("role", { required: true })} className="select w-full max-w-xs input-bordered">
+                                <option selected>seller</option>
+
+
+                            </select>
                             {errors.role?.type === 'required' && <p className='font-bold' role="alert">Role is required</p>}
+
+
                         </div>
 
                         <div className="form-control mt-3 mb-5">

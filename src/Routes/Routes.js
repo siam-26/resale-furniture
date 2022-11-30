@@ -8,12 +8,14 @@ import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
+import ReportedItems from "../Pages/Dashboard/ReportedItems/ReportedItems";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
 import Register from "../Pages/Register/Register";
 import SellerRegister from "../Pages/Register/SellerRegister/SellerRegister";
 import RoleRegister from "../Pages/RoleRegister/RoleRegister";
+import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import UserPrivateRoute from "./PrivateRoute/UserPrivateRoute/UserPrivateRoute";
 import SellerPrivateRoute from "./SellerPrivateRoute/SellerPrivateRoute";
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
                 path: '/categories/:id',
                 element: <PrivateRoute><AllCategories></AllCategories></PrivateRoute>,
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/categories/${params.id}`)
+                    return fetch(`https://furniture-server-gamma.vercel.app/categories/${params.id}`)
                 }
             },
             {
@@ -79,12 +81,16 @@ const router = createBrowserRouter([
 
             {
                 path: '/dashboard/allSellers',
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
+            {
+                path: '/dashboard/reportedItems',
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
+            }
 
 
         ]

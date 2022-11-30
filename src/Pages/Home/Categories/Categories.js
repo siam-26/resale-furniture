@@ -10,7 +10,7 @@ const Categories = () => {
     // const { data: categories, isLoading } = useQuery({
     //     queryKey: ['categories'],
     //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/categories');
+    //         const res = await fetch('https://furniture-server-gamma.vercel.app/categories');
     //         const data = await res.json();
     //         return data;
     //     }
@@ -22,7 +22,7 @@ const Categories = () => {
     //using axios
     const [categories, setCategories] = useState(null);
     useEffect(() => {
-        axios.get('http://localhost:5000/categories')
+        axios.get('https://furniture-server-gamma.vercel.app/categories')
             .then(res => {
                 setCategories(res.data);
             })
@@ -37,7 +37,7 @@ const Categories = () => {
     return (
         <div>
             <div>
-                <h1 className='text-3xl font-bold text-center mt-20 mb-8'>Top Categories</h1>
+                <h1 className='text-3xl font-extrabold text-primary text-center mt-20 mb-8'>Top Categories</h1>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pl-16 lg:pl-36 pr-16 lg:pr-36'>

@@ -32,7 +32,7 @@ const AddProduct = () => {
                         productName: data.productName,
                         productCategoryName: data.productCategoryName,
                         sellerName: data.sellerName,
-                        sellerEmail: data.sellerEmail,
+                        email: data.email,
                         select: data.select,
                         phone: data.phone,
                         location: data.location,
@@ -43,7 +43,7 @@ const AddProduct = () => {
                         yearOfUse: data.yearOfUse,
                         postedTime: data.postedTime,
                     }
-                    fetch('http://localhost:5000/addProducts', {
+                    fetch('https://furniture-server-gamma.vercel.app/addProducts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../../Loading/Loading';
 
@@ -7,32 +8,44 @@ import Loading from '../../Loading/Loading';
 const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const { data: myProducts, isLoading, refetch } = useQuery({
+
+    const url = `https://furniture-server-gamma.vercel.app/dashboard/myProducts?email=${user?.email}`;
+
+    const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myProducts', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/dashboard/myProducts`);
-            const data = await res.json();
+            const res = await fetch(url);
+            const data = res.json();
             return data;
-
-        },
+        }
     })
 
-    // const [myProducts, setProducts] = useState([])
+    //Advertise
+    const handleAdvertise = (product) => {
+        fetch('https://furniture-server-gamma.vercel.app/myProducts/advertise', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.acknowledged) {
+                    alert('successfully advertised');
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/dashboard/myProducts?email=${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setOrders(data))
-    // }, [user?.email])
+                    // toast.success('Successfully toasted!');
 
-    const handle = (product) => {
-        console.log(product);
+
+                }
+            })
     }
 
     //function for delete product
     const handleDeleteProduct = id => {
-        fetch(`http://localhost:5000/dashboard/myProducts/${id}`, {
+        fetch(`https://furniture-server-gamma.vercel.app/dashboard/myProducts/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -81,7 +94,7 @@ const MyProducts = () => {
                             <td>{product.location}</td>
                             <td>
                                 <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-primary btn-xs">delete</button>
-                                <button onClick={() => handle(product)} className="btn btn-secondary btn-xs ml-4">advertise</button>
+                                <button onClick={() => handleAdvertise(product)} className="btn btn-secondary btn-xs ml-4">advertise</button>
                             </td>
 
                         </tr>)

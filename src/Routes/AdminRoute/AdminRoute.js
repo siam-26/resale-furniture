@@ -5,7 +5,7 @@ import useAdmin from '../../Hooks/UseAdmin/useAdmin';
 import useSeller from '../../Hooks/useSeller/useSeller';
 import Loading from '../../Pages/Loading/Loading';
 
-const SellerPrivateRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const [isAdmin, adminLoading] = useAdmin(user?.email);
     const location = useLocation();
@@ -20,4 +20,4 @@ const SellerPrivateRoute = ({ children }) => {
     return children;
 };
 
-export default SellerPrivateRoute;
+export default AdminRoute;
