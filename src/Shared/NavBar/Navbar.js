@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import Loading from '../../Pages/Loading/Loading';
 
 const Navbar = () => {
     const { logOut, user, loading } = useContext(AuthContext);
 
     if (loading) {
-        return <p>loading...</p>
+        return <Loading></Loading>
     }
     //logOut
     const handleLogOut = () => {

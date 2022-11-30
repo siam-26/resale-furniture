@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
+import Loading from '../../Loading/Loading';
 
 const AllCategoriesModal = ({ categoryModal, setCategoryModal }) => {
 
     const { loading, user } = useContext(AuthContext);
 
     if (loading) {
-        return <p>loading...</p>
+        return <Loading></Loading>
     }
 
     const handleUserBooking = (event) => {
@@ -39,15 +41,19 @@ const AllCategoriesModal = ({ categoryModal, setCategoryModal }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    alert('successfully booked');
+
+
                     setCategoryModal(null);
+                    toast.success('Successfully toasted!');
                 }
             })
             .catch(error => console.log(error));
     }
     return (
         <div>
-
+            <Toaster position="top-center"
+                reverseOrder={false}
+            />
             {
                 categoryModal.products.map(product => <div>
                     <input type="checkbox" id="HMAS-Furniture-modal" className="modal-toggle" />

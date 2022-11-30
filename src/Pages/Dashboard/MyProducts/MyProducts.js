@@ -1,17 +1,34 @@
 import { useQuery } from '@tanstack/react-query';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
+import Loading from '../../Loading/Loading';
 
 
 const MyProducts = () => {
 
+    const { user } = useContext(AuthContext);
 
     const { data: myProducts, isLoading, refetch } = useQuery({
-        queryKey: ['myProducts'],
+        queryKey: ['myProducts', user?.email],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/myProducts');
+            const res = await fetch(`http://localhost:5000/dashboard/myProducts`);
             const data = await res.json();
             return data;
+
         },
     })
+
+    // const [myProducts, setProducts] = useState([])
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/dashboard/myProducts?email=${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => setOrders(data))
+    // }, [user?.email])
+
+    const handle = (product) => {
+        console.log(product);
+    }
 
     //function for delete product
     const handleDeleteProduct = id => {
@@ -29,7 +46,7 @@ const MyProducts = () => {
     }
 
     if (isLoading) {
-        return <p>loading...</p>
+        return <Loading></Loading>
     }
     return (
         <div>
@@ -64,7 +81,7 @@ const MyProducts = () => {
                             <td>{product.location}</td>
                             <td>
                                 <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-primary btn-xs">delete</button>
-                                <button className="btn btn-secondary btn-xs ml-4">advertise</button>
+                                <button onClick={() => handle(product)} className="btn btn-secondary btn-xs ml-4">advertise</button>
                             </td>
 
                         </tr>)

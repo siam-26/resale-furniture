@@ -73,7 +73,7 @@ const SellerRegister = () => {
             .then(data => {
                 console.log(data);
                 setRegisterToken(email);
-                alert('succefull');
+                alert('succefull Registered...');
             })
             .catch(error => console.log(error));
     }

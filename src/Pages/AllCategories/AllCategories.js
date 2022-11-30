@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../Hooks/useTitle';
+import Loading from '../Loading/Loading';
 import AllCategoriesModal from './AllCategoriesModal/AllCategoriesModal';
 
 const AllCategories = () => {
@@ -12,7 +13,7 @@ const AllCategories = () => {
     console.log(allcategories);
 
     if (loading) {
-        return <p>loading...</p>
+        return <Loading></Loading>
     }
 
     return (

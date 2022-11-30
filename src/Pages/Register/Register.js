@@ -76,7 +76,8 @@ const Register = () => {
             .then(data => {
                 console.log(data);
                 setRegisterToken(email);
-                alert('succefull');
+                // toast.success('Successfully toasted!')
+                alert('succefully Registered...');
             })
             .catch(error => console.log(error));
     }
@@ -97,6 +98,10 @@ const Register = () => {
     }
     return (
         <div>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="hero-content flex-col lg:flex-row-reverse w-full mt-12 mb-24">
 
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl border border-accent">

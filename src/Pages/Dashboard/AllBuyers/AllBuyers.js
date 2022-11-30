@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loading from '../../Loading/Loading';
 
 const AllBuyers = () => {
     const { data: buyers, isLoading, refetch } = useQuery({
@@ -27,7 +28,7 @@ const AllBuyers = () => {
     }
 
     if (isLoading) {
-        return <p>loading...</p>
+        return <Loading></Loading>
     }
     return (
         <div>

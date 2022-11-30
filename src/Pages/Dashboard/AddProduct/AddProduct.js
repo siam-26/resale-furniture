@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
+const notify = () => toast('Here is your toast.')
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
@@ -30,6 +32,7 @@ const AddProduct = () => {
                         productName: data.productName,
                         productCategoryName: data.productCategoryName,
                         sellerName: data.sellerName,
+                        sellerEmail: data.sellerEmail,
                         select: data.select,
                         phone: data.phone,
                         location: data.location,
@@ -51,7 +54,10 @@ const AddProduct = () => {
                         .then(result => {
                             if (result.acknowledged) {
                                 alert('successfully added');
+
+                                // toast.success('Successfully toasted!');
                                 navigate('/dashboard/myProducts');
+
                             }
                         })
                 }
@@ -63,6 +69,7 @@ const AddProduct = () => {
     }
     return (
         <div className='ml-12 md:ml-32 lg:ml-12'>
+
             <h1 className='text-3xl text-primary font-semibold ml-0 md:ml-24 lg:ml-24 mt-12 mb-8'><i>Add Your Products</i></h1>
             <form onSubmit={handleSubmit(handleSubmitForm)} className=''>
                 <div className=''>
@@ -89,6 +96,12 @@ const AddProduct = () => {
                         <span className="label-text text-black font-semibold">Seller Name</span>
                     </label>
                     <input {...register("sellerName")} value={user?.displayName} type="text" placeholder="Seller Name" className="input input-bordered w-72 md:w-1/2 lg:w-1/2 mb-5 " />
+
+                    <label className="label">
+                        <span className="label-text text-black font-semibold">Seller Email</span>
+                    </label>
+                    <input {...register("email")} value={user?.email} type="text" placeholder="Seller Name" className="input input-bordered w-72 md:w-1/2 lg:w-1/2 mb-5 " />
+
 
                     <label className="label">
                         <span className="label-text text-black font-semibold">Condition Type</span>
@@ -140,6 +153,10 @@ const AddProduct = () => {
                     <input  {...register("postedTime")} type="datetime-local" placeholder="Posted Time" className="input w-72 md:w-1/2 lg:w-1/2 mb-5 input-bordered" />
                     <br /><br />
                     <button className="btn btn-primary w-72 md:w-72 lg:w-72 mb-8 ml-0 md:ml-12 lg:ml-12">Submit</button>
+                    <Toaster
+                        position="top-center"
+                        reverseOrder={false}
+                    />
                 </div>
 
             </form>

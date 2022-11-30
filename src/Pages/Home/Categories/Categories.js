@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loading from '../../Loading/Loading';
 import Category from './Category';
 
 const Categories = () => {
@@ -12,7 +13,7 @@ const Categories = () => {
         }
     })
     if (isLoading) {
-        return <span>Loading...</span>
+        return <Loading></Loading>
     }
     return (
         <div>
