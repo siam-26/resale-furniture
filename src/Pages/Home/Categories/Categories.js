@@ -1,20 +1,39 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Loading from '../../Loading/Loading';
 import Category from './Category';
+import axios from "axios";
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Categories = () => {
-    const { data: categories, isLoading } = useQuery({
-        queryKey: ['categories'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
-            const data = await res.json();
-            return data;
-        }
-    })
-    if (isLoading) {
+    const { loading } = useContext(AuthContext);
+    // const { data: categories, isLoading } = useQuery({
+    //     queryKey: ['categories'],
+    //     queryFn: async () => {
+    //         const res = await fetch('http://localhost:5000/categories');
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // })
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
+
+    //using axios
+    const [categories, setCategories] = useState(null);
+    useEffect(() => {
+        axios.get('http://localhost:5000/categories')
+            .then(res => {
+                setCategories(res.data);
+            })
+    }, []);
+
+    if (!categories) return null;
+
+    if (loading) {
         return <Loading></Loading>
     }
+
     return (
         <div>
             <div>
